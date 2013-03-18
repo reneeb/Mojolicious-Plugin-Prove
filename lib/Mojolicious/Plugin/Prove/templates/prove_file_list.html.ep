@@ -1,0 +1,17 @@
+<h2>Tests</h2>
+
+<% if ( $files ) { %>
+<ul>
+<%     for my $testfile ( sort @{ $files } ) { %>
+           <li><a href="/<%= $prefix %>/test/<%= $name %>/<%= $testfile %>"><%= $testfile %></a></li>
+<%     } %>
+</ul>
+<% } %>
+
+<% if ( $names ) { %>
+<ul>
+<%     for my $testname ( @{ $names } ) { %>
+           <li><a href="/<%= $prefix %>/test/<%= $testname %>"><%= $testname %></a></li>
+<%     } %>
+</ul>
+<% } %>
