@@ -2,4 +2,5 @@ TODO
 ====
 
  * Add "run_all" to run all tests (either in directory or all configured tests)
+ * Add documentation to all .pm files
 
