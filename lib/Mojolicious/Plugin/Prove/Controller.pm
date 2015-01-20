@@ -100,7 +100,7 @@ sub run {
         $prove->run;
     };
     
-    $self->render_text( $stdout );
+    $self->render( text => $stdout );
 }
 
 1;
