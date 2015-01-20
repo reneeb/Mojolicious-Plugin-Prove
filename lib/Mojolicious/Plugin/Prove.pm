@@ -7,7 +7,7 @@ use Mojo::Base 'Mojolicious::Plugin::Prove::Base';
 use File::Basename;
 use File::Spec;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub register {
     my ($self, $app, $conf) = @_;
@@ -24,11 +24,11 @@ sub register {
     # Add template path
     $self->add_template_path($app->renderer, __PACKAGE__);
     
-    # Add ṕublic path
+    # Add public path
     my $static_path = File::Spec->catdir( dirname(__FILE__), 'Prove', 'public' );
     push @{ $app->static->paths }, $static_path;
     
-    $app->plugin( 'PPI' );
+    $app->plugin( 'PPI' => { no_check_file => 1 } );
     
     # Routes
     my $r      = $conf->{route}  // $app->routes;
