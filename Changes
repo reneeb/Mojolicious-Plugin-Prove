@@ -1,0 +1,19 @@
+Release history of Mojolicious-Plugin-Prove
+===========================================
+
+0.02 2015-01-20
+
+    [BUGFIX]
+    * use render( text => ... ) instead of render_text( ... )
+
+    [TESTS]
+    * Add basic tests
+
+    [MISC]
+    * Add Changes file
+    * Add metaresources to dist.ini
+    * Add TODO
+
+0.01 2013-03-19
+
+    * Initial release
