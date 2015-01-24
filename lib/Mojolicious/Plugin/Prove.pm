@@ -7,7 +7,7 @@ use Mojo::Base 'Mojolicious::Plugin::Prove::Base';
 use File::Basename;
 use File::Spec;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 sub register {
     my ($self, $app, $conf) = @_;

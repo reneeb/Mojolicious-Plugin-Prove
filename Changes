@@ -1,6 +1,22 @@
 Release history of Mojolicious-Plugin-Prove
 ===========================================
 
+0.05 2015-01-25
+
+    [MISC]
+    * a release only to get "Changes" in sync
+
+0.04 2015-01-25
+
+    [TEST]
+    * When HARNESS_TIMER is set, there is additional output
+
+0.03 2015-01-24
+
+    [TESTS]
+    * Be more generic in Tests
+    * Mojolicious 5.73 generates valid HTML5 tags now (no self-closing stylesheet tag)
+
 0.02 2015-01-20
 
     [BUGFIX]
