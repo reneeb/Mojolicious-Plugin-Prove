@@ -12,6 +12,8 @@ use File::Basename;
 use lib 'lib';
 use lib '../lib';
 
+diag( Mojolicious->VERSION );
+
 ## Webapp START
 
 my $testdir = File::Spec->catdir( dirname(__FILE__), '..', 'test' );
@@ -44,9 +46,11 @@ is_string $t->tx->res->body, <<"HTML";
 
 HTML
 
+my $close = Mojolicious->VERSION >= 5.74 ? '' : ' /';
+
 $t->get_ok( '/prove/test/base/01_success.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
-<link href="/ppi.css" rel="stylesheet" />
+<link href="/ppi.css" rel="stylesheet"$close>
 <script src="/jquery-1.9.1.min.js"></script>
 <script src="/ppi.js"></script>
 <script src="/prove_funcs.js"></script>
@@ -71,7 +75,7 @@ HTML
 
 $t->get_ok( '/prove/test/base/02_fail.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
-<link href="/ppi.css" rel="stylesheet" />
+<link href="/ppi.css" rel="stylesheet"$close>
 <script src="/jquery-1.9.1.min.js"></script>
 <script src="/ppi.js"></script>
 <script src="/prove_funcs.js"></script>
@@ -94,14 +98,12 @@ is_string $t->tx->res->body, <<"HTML";
 <div id="test_02_fail.t"><button onclick="prove( 'base', '02_fail.t', 'prove' );" value="Run tests">Run tests</button></div>
 HTML
 
-my $time = qr/\s*\d+\.\d+/;
-
 $t->get_ok( '/prove/test/base/01_success.t/run' )->status_is( 200 );
 
 my $content_success = $t->tx->res->body;
 my $regex_success   = qr!t/../test/01_success.t .. ok
 All tests successful.
-Files=1, Tests=1, \s*\d+ wallclock secs \($time usr$time sys \+$time cusr$time csys =$time CPU\)
+Files=1, Tests=1, .*
 Result: PASS!;
 
 like_string $content_success, $regex_success;
@@ -120,7 +122,7 @@ Test Summary Report
 t/../test/02_fail.t \(Wstat: 256 Tests: 1 Failed: 1\)
   Failed test:  1
   Non-zero exit status: 1
-Files=1, Tests=1, \s*\d+ wallclock secs \($time usr$time sys \+$time cusr$time csys =$time CPU\)
+Files=1, Tests=1, .*
 Result: FAIL!;
 
 like_string $content_fail, $regex_fail;
