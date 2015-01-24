@@ -100,9 +100,12 @@ HTML
 
 $t->get_ok( '/prove/test/base/01_success.t/run' )->status_is( 200 );
 
+my $timer = '(?:\s*\[\d+:\d+:\d+\]\s*)?';
+my $ms    = '(?:\s*\d+ ms)?';
+
 my $content_success = $t->tx->res->body;
-my $regex_success   = qr!t/../test/01_success.t .. ok
-All tests successful.
+my $regex_success   = qr!t/../test/01_success.t .. ok$ms
+${timer}All tests successful.
 Files=1, Tests=1, .*
 Result: PASS!;
 
@@ -116,7 +119,7 @@ my $content_fail = $t->tx->res->body;
 my $regex_fail   = qr!t/../test/02_fail.t .. 
 Dubious, test returned 1 \(wstat 256, 0x100\)
 Failed 1/1 subtests 
-
+$timer
 Test Summary Report
 -------------------
 t/../test/02_fail.t \(Wstat: 256 Tests: 1 Failed: 1\)
