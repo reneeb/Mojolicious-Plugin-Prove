@@ -48,8 +48,9 @@ sub register {
         );
         
         $r->get('/')->to( '#list' );
-        $r->get('/test/*name/*file/run')->to( '#run' );
-        $r->get('/test/*name/*file')->to( '#file' );
+        $r->get('/test/*name/file/*file/run')->to( '#run' );
+        $r->get('/test/*name/file/*file')->to( '#file' );
+        $r->get('/test/*name/run')->to( '#run' );
         $r->get('/test/*name')->to( '#list' );
     }
 }

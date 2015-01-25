@@ -1,8 +1,9 @@
 <h2>Tests</h2>
 % if ( $files ) {
+<a href="/<%= $prefix %>/test/<%= $name %>/run">run all tests</a>
 <ul>
 % for my $testfile ( sort @{ $files } ) {
-    <li><a href="/<%= $prefix %>/test/<%= $name %>/<%= $testfile %>"><%= $testfile %></a></li>
+    <li><a href="/<%= $prefix %>/test/<%= $name %>/file/<%= $testfile %>"><%= $testfile %></a></li>
 % }
 </ul>
 % }
