@@ -1,6 +1,9 @@
 TODO
 ====
 
- * Add "run_all" to run all tests (either in directory or all configured tests)
+ * I18N and L10N
  * Add documentation to all .pm files
+ * Enable options for prove (maybe with checkboxes) like ```--timer```
+ * Use url_for for all links
+ * Improve layout
 
