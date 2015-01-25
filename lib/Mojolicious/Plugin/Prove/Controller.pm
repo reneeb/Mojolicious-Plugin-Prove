@@ -93,7 +93,9 @@ sub run {
     }
     
     my @args = $found ? $found : @files;
-    
+
+    local $ENV{HARNESS_TIMER};
+
     my $prove = App::Prove->new;
     $prove->process_args( @args );
     my ($stdout, $stderr, @result) = capture {

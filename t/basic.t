@@ -39,16 +39,17 @@ HTML
 $t->get_ok( '/prove/test/base' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
 <h2>Tests</h2>
+<a href="/prove/test/base/run">run all tests</a>
 <ul>
-    <li><a href="/prove/test/base/01_success.t">01_success.t</a></li>
-    <li><a href="/prove/test/base/02_fail.t">02_fail.t</a></li>
+    <li><a href="/prove/test/base/file/01_success.t">01_success.t</a></li>
+    <li><a href="/prove/test/base/file/02_fail.t">02_fail.t</a></li>
 </ul>
 
 HTML
 
 my $close = Mojolicious->VERSION >= 5.74 ? '' : ' /';
 
-$t->get_ok( '/prove/test/base/01_success.t' )->status_is( 200 );
+$t->get_ok( '/prove/test/base/file/01_success.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
 <link href="/ppi.css" rel="stylesheet"$close>
 <script src="/jquery-1.9.1.min.js"></script>
@@ -73,7 +74,7 @@ is_string $t->tx->res->body, <<"HTML";
 <div id="test_01_success.t"><button onclick="prove( 'base', '01_success.t', 'prove' );" value="Run tests">Run tests</button></div>
 HTML
 
-$t->get_ok( '/prove/test/base/02_fail.t' )->status_is( 200 );
+$t->get_ok( '/prove/test/base/file/02_fail.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
 <link href="/ppi.css" rel="stylesheet"$close>
 <script src="/jquery-1.9.1.min.js"></script>
@@ -98,14 +99,11 @@ is_string $t->tx->res->body, <<"HTML";
 <div id="test_02_fail.t"><button onclick="prove( 'base', '02_fail.t', 'prove' );" value="Run tests">Run tests</button></div>
 HTML
 
-$t->get_ok( '/prove/test/base/01_success.t/run' )->status_is( 200 );
-
-my $timer = '(?:\s*\[\d+:\d+:\d+\]\s*)?';
-my $ms    = '(?:\s*\d+ ms)?';
+$t->get_ok( '/prove/test/base/file/01_success.t/run' )->status_is( 200 );
 
 my $content_success = $t->tx->res->body;
-my $regex_success   = qr!t/../test/01_success.t .. ok$ms
-${timer}All tests successful.
+my $regex_success   = qr!t/../test/01_success.t .. ok
+All tests successful.
 Files=1, Tests=1, .*
 Result: PASS!;
 
@@ -114,12 +112,12 @@ if ( $content_success !~ $regex_success ) {
   diag $content_success;
 }
 
-$t->get_ok( '/prove/test/base/02_fail.t/run' )->status_is( 200 );
+$t->get_ok( '/prove/test/base/file/02_fail.t/run' )->status_is( 200 );
 my $content_fail = $t->tx->res->body;
 my $regex_fail   = qr!t/../test/02_fail.t .. 
 Dubious, test returned 1 \(wstat 256, 0x100\)
 Failed 1/1 subtests 
-$timer
+
 Test Summary Report
 -------------------
 t/../test/02_fail.t \(Wstat: 256 Tests: 1 Failed: 1\)
