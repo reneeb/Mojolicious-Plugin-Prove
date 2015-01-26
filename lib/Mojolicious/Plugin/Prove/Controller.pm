@@ -93,6 +93,7 @@ sub run {
     }
     
     my @args = $found ? $found : @files;
+    @args    = sort @args;
 
     local $ENV{HARNESS_TIMER};
 
