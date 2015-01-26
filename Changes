@@ -1,11 +1,17 @@
 Release history of Mojolicious-Plugin-Prove
 ===========================================
 
+0.07 2015-01-26
+
+    [IMPROVEMENTS]
+    * switch off proverc
+    * sort files when doing prove
+
 0.06 2015-01-25
 
     [IMPROVEMENTS]
     * Add route to run all tests of a group
-    * Switch of HARNESS_TIMER for tests run by this plugin
+    * Switch off HARNESS_TIMER for tests run by this plugin
 
     [TEST]
     * Add test for running all tests of a group
