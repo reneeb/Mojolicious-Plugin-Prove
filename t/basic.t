@@ -47,7 +47,7 @@ is_string $t->tx->res->body, <<"HTML";
 
 HTML
 
-my $close = Mojolicious->VERSION >= 5.74 ? '' : ' /';
+my $close = Mojolicious->VERSION >= 5.73 ? '' : ' /';
 
 $t->get_ok( '/prove/test/base/file/01_success.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
