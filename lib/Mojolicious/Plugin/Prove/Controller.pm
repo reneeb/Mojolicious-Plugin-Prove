@@ -97,7 +97,7 @@ sub run {
     local $ENV{HARNESS_TIMER};
 
     my $prove = App::Prove->new;
-    $prove->process_args( @args );
+    $prove->process_args( '--norc', @args );
     my ($stdout, $stderr, @result) = capture {
         $prove->run;
     };
