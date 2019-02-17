@@ -102,10 +102,7 @@ HTML
 $t->get_ok( '/prove/test/base/file/01_success.t/run' )->status_is( 200 );
 
 my $content_success = $t->tx->res->body;
-my $regex_success   = qr!t/../test/01_success.t .. ok
-All tests successful.
-Files=1, Tests=1, .*
-Result: PASS!;
+my $regex_success   = qr!t/../test/01_success.t .. ok\s+All tests successful.\s+Files=1, Tests=1, .*\s+Result: PASS!;
 
 like_string $content_success, $regex_success;
 if ( $content_success !~ $regex_success ) {
@@ -114,17 +111,7 @@ if ( $content_success !~ $regex_success ) {
 
 $t->get_ok( '/prove/test/base/file/02_fail.t/run' )->status_is( 200 );
 my $content_fail = $t->tx->res->body;
-my $regex_fail   = qr!t/../test/02_fail.t .. 
-Dubious, test returned 1 \(wstat 256, 0x100\)
-Failed 1/1 subtests 
-
-Test Summary Report
--------------------
-t/../test/02_fail.t \(Wstat: 256 Tests: 1 Failed: 1\)
-  Failed test:  1
-  Non-zero exit status: 1
-Files=1, Tests=1, .*
-Result: FAIL!;
+my $regex_fail   = qr!t/../test/02_fail.t ..\s+Dubious, test returned 1 \(wstat 256, 0x100\)\s+Failed 1/1 subtests \s+Test Summary Report\s+-------------------\s+t/../test/02_fail.t \(Wstat: 256 Tests: 1 Failed: 1\)\s+  Failed test:  1\s+  Non-zero exit status: 1\s+Files=1, Tests=1, .*\s+Result: FAIL!;
 
 like_string $content_fail, $regex_fail;
 if ( $content_fail !~ $regex_fail ) {
