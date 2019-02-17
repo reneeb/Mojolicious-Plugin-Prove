@@ -1,0 +1,96 @@
+[![Build Status](https://travis-ci.org/reneeb/Mojolicious-Plugin-Prove.svg?branch=master)](https://travis-ci.org/reneeb/Mojolicious-Plugin-Prove)
+[![Kwalitee status](http://cpants.cpanauthors.org/dist/Mojolicious-Plugin-Prove.png)](http://cpants.charsbar.org/dist/overview/Mojolicious-Plugin-Prove)
+[![GitHub issues](https://img.shields.io/github/issues/reneeb/Mojolicious-Plugin-Prove.svg)](https://github.com/reneeb/Mojolicious-Plugin-Prove/issues)
+
+# NAME
+
+Mojolicious::Plugin::Prove - run test scripts via browser
+
+# VERSION
+
+version 0.08
+
+# SYNOPSIS
+
+    # Mojolicious::Lite
+    plugin 'Prove' => {
+        tests => {
+            my_tests => '/path/to/test/files.t',
+        },
+    };
+
+    # Mojolicious
+    $app->plugin( 'Prove' => {
+        tests => {
+            my_tests => '/path/to/test/files.t',
+        },
+    });
+
+    # Access
+    http://localhost:3000/prove
+    
+    # Prefix
+    plugin 'Prove' => {
+        tests => {
+            my_tests => '/path/to/test/files.t',
+        },
+        prefix => 'tests',
+    };
+
+
+
+# Development
+
+The distribution is contained in a Git repository, so simply clone the
+repository
+
+```
+$ git clone http://github.com/reneeb/Mojolicious-Plugin-Prove.git
+```
+
+and change into the newly-created directory.
+
+```
+$ cd Mojolicious-Plugin-Prove
+```
+
+The project uses [`Dist::Zilla`](https://metacpan.org/pod/Dist::Zilla) to
+build the distribution, hence this will need to be installed before
+continuing:
+
+```
+$ cpanm Dist::Zilla
+```
+
+To install the required prequisite packages, run the following set of
+commands:
+
+```
+$ dzil authordeps --missing | cpanm
+$ dzil listdeps --author --missing | cpanm
+```
+
+The distribution can be tested like so:
+
+```
+$ dzil test
+```
+
+To run the full set of tests (including author and release-process tests),
+add the `--author` and `--release` options:
+
+```
+$ dzil test --author --release
+```
+
+# AUTHOR
+
+Renee Baecker <reneeb@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2015 by Renee Baecker.
+
+This is free software, licensed under:
+
+    The Artistic License 2.0 (GPL Compatible)
