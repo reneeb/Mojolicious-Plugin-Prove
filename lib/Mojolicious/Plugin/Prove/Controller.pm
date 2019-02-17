@@ -35,10 +35,9 @@ sub list {
 sub file {
     my $self = shift;
     
-    my $format = defined $self->stash( 'format' ) ? '.' . $self->stash( 'format' ) : '';
-    my $file   = $self->param( 'file' ) . $format;
+    my $file   = $self->param( 'file' );
     my $name   = $self->param( 'name' );
-    
+
     $self->stash( format => 'html' );
     
     my $conf = $self->stash->{conf};
@@ -50,14 +49,11 @@ sub file {
     
     my @files = File::Find::Rule->file->name( '*.t' )->maxdepth( 1 )->in( $conf->{$name} );
     
-    my $found;
-    if ( $file ) {
-        ($found) = grep{ $file eq basename $_ }@files;
+    my ($found) = grep{ $file eq basename $_ }@files;
         
-        if ( !$found ) {
-            $self->render( 'prove_exception' );
-            return;
-        }
+    if ( !$found ) {
+        $self->render( 'prove_exception' );
+        return;
     }
     
     my $content = do{ local ( @ARGV,$/ ) = $found; <> };
@@ -107,3 +103,12 @@ sub run {
 }
 
 1;
+
+=head1 METHODS
+
+=head2 file
+
+=head2 list
+
+=head2 run
+

@@ -20,3 +20,9 @@ sub add_template_path {
 }
 
 1;
+
+=head1 METHODS
+
+=head2 add_template_path
+
+Adds the path to templates for some loaded classes
