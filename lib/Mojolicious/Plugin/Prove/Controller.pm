@@ -7,6 +7,8 @@ use Capture::Tiny qw(capture);
 use File::Basename;
 use File::Find::Rule;
 
+our $VERSION = 0.09;
+
 sub list {
     my $self = shift;
     

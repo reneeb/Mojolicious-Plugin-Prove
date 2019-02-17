@@ -1,6 +1,11 @@
 Release history of Mojolicious-Plugin-Prove
 ===========================================
 
+0.09 2019-02-17 17:56:00
+
+    * Added more tests
+    * Clean up code
+
 0.08 2015-01-26
 
     [TESTS]
