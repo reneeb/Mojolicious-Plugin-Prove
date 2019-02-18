@@ -52,7 +52,7 @@ my $close = Mojolicious->VERSION >= 5.73 ? '' : ' /';
 $t->get_ok( '/prove/test/base/file/01_success.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
 <link href="/ppi.css" rel="stylesheet"$close>
-<script src="/jquery-1.9.1.min.js"></script>
+<script src="/jquery-3.3.1.min.js"></script>
 <script src="/ppi.js"></script>
 <script src="/prove_funcs.js"></script>
   <script src="/ppi_js.js"></script>
@@ -77,7 +77,7 @@ HTML
 $t->get_ok( '/prove/test/base/file/02_fail.t' )->status_is( 200 );
 is_string $t->tx->res->body, <<"HTML";
 <link href="/ppi.css" rel="stylesheet"$close>
-<script src="/jquery-1.9.1.min.js"></script>
+<script src="/jquery-3.3.1.min.js"></script>
 <script src="/ppi.js"></script>
 <script src="/prove_funcs.js"></script>
   <script src="/ppi_js.js"></script>
