@@ -95,13 +95,26 @@ sub run {
 
     local $ENV{HARNESS_TIMER};
 
+    my $accepts = $self->app->renderer->accepts( $self );
+    my $format  = $accepts->[0] =~ m{\Ahtml?} ? 'html' : $accepts->[0];
+
     my $prove = App::Prove->new;
+
     $prove->process_args( '--norc', @args );
+    $prove->formatter('TAP::Formatter::HTML') if $format eq 'html';
+
     my ($stdout, $stderr, @result) = capture {
         $prove->run;
     };
     
-    $self->render( text => $stdout );
+    if ( $format eq 'html' ) {
+        $stdout =~ s{\A.*?^(<!DOCTYPE)}{$1}xms;
+        $self->render( text => $stdout );
+    }
+    else {
+        $self->tx->res->headers->content_type('text/plain');
+        $self->render( text => $stdout );
+    }
 }
 
 1;
