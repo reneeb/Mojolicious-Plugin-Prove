@@ -8,7 +8,7 @@ Mojolicious::Plugin::Prove - run test scripts via browser
 
 # VERSION
 
-version 0.09
+version 0.1
 
 # SYNOPSIS
 
