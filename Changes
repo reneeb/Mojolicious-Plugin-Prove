@@ -1,6 +1,14 @@
 Release history of Mojolicious-Plugin-Prove
 ===========================================
 
+0.10 2019-02-18 10:00:00
+
+    * Added example
+    * replaced all hardcoded links with url_for()
+    * Make tests for flexible to fix test failures on Windows
+    * Updated jQuery
+    * Use TAP::Formatter::HTML if no other format is requested
+
 0.09 2019-02-17 17:56:00
 
     * Added more tests

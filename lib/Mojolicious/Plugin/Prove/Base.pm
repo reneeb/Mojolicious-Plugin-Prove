@@ -1,10 +1,12 @@
 package Mojolicious::Plugin::Prove::Base;
 
+# ABSTRACT: Base class for Mojolicious::Plugin::Prove
+
 use Mojo::Base 'Mojolicious::Plugin';
 
 use Cwd 'abs_path';
 
-our $VERSION = 0.09;
+our $VERSION = 0.10;
 
 has 'prefix';
 has 'conf';

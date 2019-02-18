@@ -1,5 +1,7 @@
 package Mojolicious::Plugin::Prove::Controller;
 
+# ABSTRACT: Controller for Mojolicious::Plugin::Prove
+
 use Mojo::Base 'Mojolicious::Controller';
 
 use App::Prove;
@@ -7,7 +9,7 @@ use Capture::Tiny qw(capture);
 use File::Basename;
 use File::Find::Rule;
 
-our $VERSION = 0.09;
+our $VERSION = 0.10;
 
 sub list {
     my $self = shift;
