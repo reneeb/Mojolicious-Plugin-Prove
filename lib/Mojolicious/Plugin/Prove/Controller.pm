@@ -95,8 +95,8 @@ sub run {
 
     local $ENV{HARNESS_TIMER};
 
-    my $accepts = $self->app->renderer->accepts( $self );
-    my $format  = $accepts->[0] =~ m{\Ahtml?} ? 'html' : $accepts->[0];
+    my $accepts = $self->app->renderer->accepts( $self )->[0] // 'html';
+    my $format  = $accepts =~ m{\Ahtml?} ? 'html' : $accepts;
 
     my $prove = App::Prove->new;
 
