@@ -46,11 +46,11 @@ sub register {
             conf      => $self->conf,
         );
         
-        $pr->get('/')->to( '#list' );
-        $pr->get('/test/*name/file/*file/run')->to( '#run' );
-        $pr->get('/test/*name/file/*file')->to( '#file' );
-        $pr->get('/test/*name/run')->to( '#run' );
-        $pr->get('/test/*name')->to( '#list' );
+        $pr->get('/')->to( '#list' )->name('mpp_prove_list');
+        $pr->get('/test/*name/file/*file/run')->to( '#run' )->name('mpp_run_file');
+        $pr->get('/test/*name/file/*file')->to( '#file' )->name('mpp_file');
+        $pr->get('/test/*name/run')->to( '#run' )->name('mpp_run_all');
+        $pr->get('/test/*name')->to( '#list' )->name('mpp_file_list');
     }
 }
 
