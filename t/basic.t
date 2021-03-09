@@ -6,8 +6,7 @@ use Test::More;
 use Test::Mojo;
 use Test::LongString;
 
-use File::Spec;
-use File::Basename;
+use Mojo::File qw(curfile);
 
 use lib 'lib';
 use lib '../lib';
@@ -16,7 +15,7 @@ diag( Mojolicious->VERSION );
 
 ## Webapp START
 
-my $testdir = File::Spec->catdir( dirname(__FILE__), '..', 'test' );
+my $testdir = curfile->dirname->child( '..', 'test' )->to_string;
 
 plugin('Prove' => {
   tests => {
