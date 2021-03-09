@@ -5,8 +5,6 @@ package Mojolicious::Plugin::Prove;
 use Mojo::Base 'Mojolicious::Plugin::Prove::Base';
 use Mojo::File;
 
-our $VERSION = 0.10;
-
 sub register {
     my ($self, $app, $conf) = @_;
     
@@ -38,7 +36,7 @@ sub register {
     
     
     {
-        my $pr = $r->route("/$prefix")->to(
+        my $pr = $r->any("/$prefix")->to(
             'controller#',
             namespace => 'Mojolicious::Plugin::Prove',
             plugin    => $self,
