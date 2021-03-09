@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/reneeb/Mojolicious-Plugin-Prove.svg?branch=master)](https://travis-ci.org/reneeb/Mojolicious-Plugin-Prove)
-[![Kwalitee status](http://cpants.cpanauthors.org/dist/Mojolicious-Plugin-Prove.png)](http://cpants.charsbar.org/dist/overview/Mojolicious-Plugin-Prove)
+[![Kwalitee status](http://cpants.cpanauthors.org/dist/Mojolicious-Plugin-Prove.png)](https://cpants.cpanauthors.org/dist/Mojolicious-Plugin-Prove)
 [![GitHub issues](https://img.shields.io/github/issues/reneeb/Mojolicious-Plugin-Prove.svg)](https://github.com/reneeb/Mojolicious-Plugin-Prove/issues)
 
 # NAME
@@ -8,7 +8,7 @@ Mojolicious::Plugin::Prove - run test scripts via browser
 
 # VERSION
 
-version 0.1
+version 0.11
 
 # SYNOPSIS
 
@@ -45,7 +45,7 @@ The distribution is contained in a Git repository, so simply clone the
 repository
 
 ```
-$ git clone http://github.com/reneeb/Mojolicious-Plugin-Prove.git
+$ git clone https://github.com/reneeb/Mojolicious-Plugin-Prove.git
 ```
 
 and change into the newly-created directory.

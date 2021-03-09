@@ -1,6 +1,13 @@
 Release history of Mojolicious-Plugin-Prove
 ===========================================
 
+0.11 2021-03-09 15:20:00
+
+    * Mojolicious 9 removed 'route'. Replaced 'route' with 'any'
+    * replace File::Find::Rule with Mojo::File
+    * replace File::Spec and File::Basename with Mojo::File
+    * update dist.ini (removed prereqs that aren't used anymore, added more plugins)
+
 0.10 2019-02-18 10:00:00
 
     * Added example

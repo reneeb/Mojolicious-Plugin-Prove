@@ -6,8 +6,6 @@ use Mojo::Base 'Mojolicious::Plugin';
 
 use Cwd 'abs_path';
 
-our $VERSION = 0.10;
-
 has 'prefix';
 has 'conf';
 
