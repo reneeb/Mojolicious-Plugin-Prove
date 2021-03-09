@@ -5,11 +5,8 @@ package Mojolicious::Plugin::Prove::Controller;
 use Mojo::Base 'Mojolicious::Controller';
 
 use App::Prove;
+use Mojo::File qw(path);
 use Capture::Tiny qw(capture);
-use File::Basename;
-use File::Find::Rule;
-
-our $VERSION = 0.10;
 
 sub list {
     my $self = shift;
@@ -23,8 +20,12 @@ sub list {
     }
     
     if ( $name ) {
-        my @files = File::Find::Rule->file->name( '*.t' )->maxdepth( 1 )->in( $conf->{$name} );
-        $self->stash( files => [ map{ basename $_ }@files ] );
+        my $files = path( $conf->{$name} )
+            ->list
+            ->grep( sub { $_->extname eq 't' } )
+            ->map( sub { $_->basename } )
+            ->to_array;
+        $self->stash( files => $files );
         $self->stash( names => '' );
     }
     else {
@@ -51,16 +52,18 @@ sub file {
         return;
     }
     
-    my @files = File::Find::Rule->file->name( '*.t' )->maxdepth( 1 )->in( $conf->{$name} );
-    
-    my ($found) = grep{ $file eq basename $_ }@files;
+    my $found = path( $conf->{$name} )
+        ->list
+        ->grep( sub { $_->extname eq 't' and $file eq $_->basename } )
+        ->first;
         
     if ( !$found ) {
         $self->render( 'prove_exception' );
         return;
     }
     
-    my $content = do{ local ( @ARGV,$/ ) = $found; <> };
+    my $content = $found->slurp;
+
     $self->stash( code => $content );
     $self->stash( file => $file );
     
@@ -80,20 +83,24 @@ sub run {
         return;
     }
     
-    my @files = File::Find::Rule->file->name( '*.t' )->maxdepth( 1 )->in( $conf->{$name} );
-    
+    my $files = path( $conf->{$name} )
+        ->list
+        ->grep( sub { $_->extname eq 't' } )
+        ->map( sub { [ $_->basename, $_->to_string ] } )
+        ->to_array;
+
     my $found;
     if ( $file ) {
-        ($found) = grep{ $file eq basename $_ }@files;
+        ($found) = grep{ $file eq $_->[0] } @{$files || []};
         
         if ( !$found ) {
             $self->render( 'prove_exception' );
             return;
         }
     }
-    
-    my @args = $found ? $found : @files;
-    @args    = sort @args;
+
+    my @args = $found ? $found : @{ $files || [] };
+    @args    = sort map{ $_->[1] } @args;
 
     local $ENV{HARNESS_TIMER};
 
